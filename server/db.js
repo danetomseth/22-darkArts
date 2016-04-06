@@ -3,8 +3,10 @@
 var mongoose = require('mongoose');
 var Promise = require('bluebird'); 
 Promise.promisifyAll(mongoose);
+var path = require('path');
+var databaseURI = require(path.join(__dirname, './env')).DATABASE_URI;
 
-var databaseURI = 'mongodb://localhost:27017/auther';
+
 
 var db = mongoose.connect(databaseURI).connection;
 
