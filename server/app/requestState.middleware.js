@@ -6,7 +6,7 @@ var router = require('express').Router(),
 
 var User = require('../api/users/user.model');
 var path = require('path');
-var secret = require(path.join(__dirname, '../env')).SECRET;
+var secret = require(path.join(__dirname, '../env')).SESSION_SECRET;
 
 router.use(function (req, res, next) {
 	var bodyString = '';
