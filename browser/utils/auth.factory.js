@@ -5,6 +5,9 @@ app.factory('Auth', function ($http, $rootScope, User) {
 	$rootScope.isLoggedIn = function () {
 		return !!me._id;
 	};
+	// $rootScope.isGuest() = function () {
+	// 	return null;
+	// };
 	$rootScope.isAdmin = function () {
 		return !!me.isAdmin;
 	};

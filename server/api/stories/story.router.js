@@ -25,6 +25,9 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
+	if (req.headers['x-custom-header-name'] !== 'secret') {
+        res.redirect('/'); //Or just do what you want to
+    }
 	Story.create(req.body)
 	.then(function (story) {
 		return story.populateAsync('author');
@@ -44,6 +47,9 @@ router.get('/:id', function (req, res, next) {
 });
 
 router.put('/:id', function (req, res, next) {
+	if (req.headers['x-custom-header-name'] !== 'secret') {
+        res.redirect('/'); //Or just do what you want to
+    }
 	_.extend(req.story, req.body);
 	req.story.save()
 	.then(function (story) {
@@ -53,6 +59,9 @@ router.put('/:id', function (req, res, next) {
 });
 
 router.delete('/:id', function (req, res, next) {
+	if (req.headers['x-custom-header-name'] !== 'secret') {
+        res.redirect('/'); //Or just do what you want to
+    }
 	req.story.remove()
 	.then(function () {
 		res.status(204).end();

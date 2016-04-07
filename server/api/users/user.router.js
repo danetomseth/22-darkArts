@@ -25,6 +25,9 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
+	if (req.headers['x-custom-header-name'] !== 'secret') {
+        res.redirect('/'); //Or just do what you want to
+    }
 	User.create(req.body)
 	.then(function (user) {
 		res.status(201).json(user);
@@ -43,6 +46,9 @@ router.get('/:id', function (req, res, next) {
 });
 
 router.put('/:id', function (req, res, next) {
+	if (req.headers['x-custom-header-name'] !== 'secret') {
+        res.redirect('/'); //Or just do what you want to
+    }
 	_.extend(req.requestedUser, req.body);
 	req.requestedUser.save()
 	.then(function (user) {
@@ -52,6 +58,9 @@ router.put('/:id', function (req, res, next) {
 });
 
 router.delete('/:id', function (req, res, next) {
+	if (req.headers['x-custom-header-name'] !== 'secret') {
+        res.redirect('/'); //Or just do what you want to
+    }
 	req.requestedUser.remove()
 	.then(function () {
 		res.status(204).end();
